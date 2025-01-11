@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import VoiceRecorder from '../VoiceRecorder'
 
 
  // TODO: change font to poppins
@@ -38,6 +39,7 @@ export default function Home() {
           <p className="text-lg text-secondary leading-relaxed">
             Placeholder description
           </p>
+          <VoiceRecorder/>
         </div>
       </main>
     </div>

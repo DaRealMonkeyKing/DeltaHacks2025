@@ -6,6 +6,7 @@ const VoiceRecorder = () => {
     const [audioUrl, setAudioUrl] = useState(null);
     const [audioFile, setAudioFile] = useState(null);
     const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [transcription, setTranscription] = useState("");
 
     // Start recording
     const startRecording = async () => {
@@ -55,10 +56,26 @@ const VoiceRecorder = () => {
     };
 
     // Stop recording
-    const stopRecording = () => {
+    const stopRecording = async () => {
         if (mediaRecorder) {
             mediaRecorder.stop();
             setRecording(false);
+        }
+
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/transcribe",
+                {},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            setTranscription(response.data.transcription);
+            console.log(response.data.transcription)
+        } catch (err) {
+            console.error(err);
         }
     };
 
@@ -68,6 +85,7 @@ const VoiceRecorder = () => {
                 {recording ? "Stop Recording" : "Start Recording"}
             </button>
             {audioUrl && <audio controls src={audioUrl} />}
+            {transcription && <p>Transcription: {transcription}</p>}
         </div>
     );
 };

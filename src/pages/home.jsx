@@ -40,6 +40,7 @@ export default function Home() {
           <p className="text-xl text-secondary leading-relaxed">
             Achieve all your learning goals with a fun and interactive study pal! (Scientifically proven!!!!)
           </p>
+          <VoiceRecorder/>
         </div>
       </main>
     </div>

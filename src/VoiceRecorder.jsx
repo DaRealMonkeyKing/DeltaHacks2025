@@ -6,7 +6,7 @@ const VoiceRecorder = () => {
     const [audioUrl, setAudioUrl] = useState(null);
     const [audioFile, setAudioFile] = useState(null);
     const [mediaRecorder, setMediaRecorder] = useState(null);
-    // const [transcription, setTranscription] = useState("");
+    const [transcription, setTranscription] = useState("");
 
     // Start recording
     const startRecording = async () => {
@@ -61,33 +61,32 @@ const VoiceRecorder = () => {
             mediaRecorder.stop();
             setRecording(false);
         }
+        fetchTranscription()
+    };
 
-        // try {
-        //     const response = await axios.post(
-        //         "http://127.0.0.1:5000/transcribe",
-        //         {},
-        //         {
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //             },
-        //         }
-        //     );
-        //     setTranscription(response.data.transcription);
-        //     console.log(response.data.transcription)
-        //     console.log("1")
-        // } catch (err) {
-        //     console.error(err);
-        // }
+    const fetchTranscription = async () => {
+        try {
+            const response = await axios.get(
+                "http://127.0.0.1:5000/transcribe"
+            );
+
+            setTranscription(response.data.transcription);
+            console.log(response.data.transcription);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
         <div>
-            <button className="bg-red-400 text-black rounded-md px-10 py-2" onClick={recording ? stopRecording : startRecording}>
+            <button
+                className="bg-red-400 text-black rounded-md px-10 py-2"
+                onClick={recording ? stopRecording : startRecording}
+            >
                 {recording ? "Stop Recording" : "Start Recording"}
             </button>
             {audioUrl && <audio controls src={audioUrl} />}
-            {/* {transcription && <p>Transcription: {transcription}</p>} */}
-            {/* <p>{transcription}</p> */}
+            {transcription && <p>Transcription: {transcription}</p>}
         </div>
     );
 };

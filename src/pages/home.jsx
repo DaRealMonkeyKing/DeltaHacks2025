@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
- // TODO: change font to poppins
  // TODO: make it less ugly
 export default function Home() {
   return <div className="flex-1 flex flex-col md:flex-row items-center max-w-7xl mx-auto px-8 gap-8 md:gap-16 py-8">
@@ -25,7 +24,7 @@ export default function Home() {
         </Link>
       </header>
 
-      <main className="flex-1 flex items-center max-w-7xl mx-auto px-8 gap-16 bg-gradient-to-b from-white to-accent min-h-screen">
+      <main className="flex-1 flex items-center max-w-7xl mx-auto px-8 gap-16 min-h-screen">
         <div className="flex-1">
           <img 
             src="src\assets\mascot.png" 

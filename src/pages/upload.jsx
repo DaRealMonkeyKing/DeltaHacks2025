@@ -1,30 +1,66 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import StudyCard from './studyCard'
 
 export default function upload() {
   return (
     <div>
-      <header className="flex fixed top-0 left-0 right-0 justify-between items-center px-8 py-4 bg-white shadow-md">
+      <header className="flex fixed top-0 left-0 right-0 justify-between items-center px-8 py-4 bg-white shadow-md z-50">
         <div className="h-10">
-          {/* Replace with your logo */}
           <Link to="/">
             <img 
-              src="src\assets\react.svg" 
+              src="src\assets\logo.png" 
               alt="Logo" 
-              className="h-full w-auto" 
+              className="h-full w-auto"
             />
           </Link>
         </div>
       </header>
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <p>Upload/choose a study set page</p>
-          <Link 
-            to="/study" 
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block mt-4"
-          >
-            study
-          </Link>
+          <h1 className="text-6xl font-bold text-primary p-4 pt-20">What are we learning today?</h1>
+          <h2 className="text-3xl text-gray-800 font-semibold p-4">Choose one of our pre-made study sets</h2>
+          <div className="grid grid-cols-3 gap-4 py-4">
+            <Link to="/study">
+            <StudyCard title="AP US History" desc="Study the history of the United States from 1492 to the present day, complete with revolutions, wars, and more!" />
+            </Link>
+            <Link to="/study">
+            <StudyCard title="MATH137" desc="Learn the basics of calculus, including limits and derivatives!" />
+            </Link>
+            <Link to="/study">
+            <StudyCard title="Intro to Psychology" desc="Have you ever wondered how the mind works? Learn the basics of psychology here!" />
+            </Link>
+          </div>
+          <h2 className="text-3xl text-gray-800 font-semibold p-4">Or upload your own material!</h2>
+          <div class="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
+            <div class="md:flex">
+              <div class="w-full p-3">
+                <div
+                  class="relative h-48 rounded-lg border-2 border-blue-500 bg-gray-50 flex justify-center items-center shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                >
+                  <div class="absolute flex flex-col items-center">
+                    <img
+                      alt="File Icon"
+                      class="mb-3"
+                      src="https://img.icons8.com/dusk/64/000000/file.png"
+                    />
+                    <span class="block text-gray-500 font-semibold"
+                      >Drag &amp; drop your files here</span
+                    >
+                    <span class="block text-gray-400 font-normal mt-1"
+                      >or click to upload</span
+                    >
+                  </div>
+
+                  <input
+                    name=""
+                    class="h-full w-full opacity-0 cursor-pointer"
+                    type="file"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

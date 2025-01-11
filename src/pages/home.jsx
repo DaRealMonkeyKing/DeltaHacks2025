@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import VoiceRecorder from '../VoiceRecorder'
 
 
  // TODO: change font to poppins

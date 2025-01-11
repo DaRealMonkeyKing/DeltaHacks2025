@@ -5,6 +5,7 @@ import Login from './pages/login'
 import Upload from './pages/upload'
 import Study from './pages/study'
 import Results from './pages/results'
+import CustomizeUpload from './pages/customizeup'
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/study" element={<Study />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/customizeup" element={<CustomizeUpload />} />
         </Routes>
       </BrowserRouter>
     </div>

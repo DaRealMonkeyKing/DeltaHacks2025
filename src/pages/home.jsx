@@ -36,7 +36,7 @@ export default function Home() {
           <h1 className="text-6xl font-bold text-primary">
             StegoStudy
           </h1>
-          <p className="text-xl text-secondary leading-relaxed">
+          <p className="text-2xl text-secondary leading-relaxed">
             Achieve all your learning goals with a fun and interactive study pal! (Scientifically proven!!!!)
           </p>
         </div>

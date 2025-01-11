@@ -18,21 +18,24 @@ export default function results() {
       </header>
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-
-          <p>results page</p>
-          <p>button to choose a new file and button to study same thing again</p>
-          <Link 
-            to="/study" 
-            
-          >
-            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Try Again</button>
-          </Link>
-          <Link 
-            to="/upload" 
-            
-          >
-            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">New Topic</button>
-          </Link>
+          <h1 className="text-6xl font-bold text-primary pt-20">Let's see how you did!</h1>
+          <div className="flex items-center justify-center">
+            <img src="src\assets\pizza.png" alt="Mascot" className="w-2/3" />
+          </div>
+          <h2 className="text-3xl text-gray-800 font-semibold p-2">StegoStudy heard 83% of key information in the study set.</h2>
+          <h2 className="text-3xl text-gray-800 font-semibold p-2">Here's what you missed:</h2>
+          <p> add stuff here</p>
+          <h2 className="text-3xl text-gray-800 font-semibold p-4">Study again?</h2>
+          <div className="flex justify-center items-center gap-4">
+            <Link 
+              to="/study">
+              <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Try Again</button>
+            </Link>
+            <Link 
+              to="/upload">
+              <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">New Topic</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

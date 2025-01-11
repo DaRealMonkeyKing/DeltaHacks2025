@@ -36,7 +36,7 @@ def transcribe_audio():
         file=audio_file
     )
     print(transcription.text)
-    print("d")
+    print("dd")
     return jsonify({"transcription": transcription.text}), 200
 
 if __name__ == '__main__':

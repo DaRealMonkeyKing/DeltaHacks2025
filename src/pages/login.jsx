@@ -20,7 +20,7 @@ export default function Login() {
         <div className="text-center">
           <p>log in here</p>
           <Link to="/upload">
-            <button className="bg-primary text-background rounded-md px-10 py-2">Log in</button>
+            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Log in</button>
           </Link>
         </div>
       </div>

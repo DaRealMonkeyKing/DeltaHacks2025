@@ -25,13 +25,13 @@ export default function results() {
             to="/study" 
             
           >
-            <button className="bg-primary text-background rounded-md px-10 py-2">Try Again</button>
+            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Try Again</button>
           </Link>
           <Link 
             to="/upload" 
             
           >
-            <button className="bg-primary text-background rounded-md px-10 py-2">New Topic</button>
+            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">New Topic</button>
           </Link>
         </div>
       </div>

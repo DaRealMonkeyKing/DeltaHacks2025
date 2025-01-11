@@ -35,7 +35,8 @@ def transcribe_audio():
         model="whisper-1", 
         file=audio_file
     )
-
+    print(transcription.text)
+    print("d")
     return jsonify({"transcription": transcription.text}), 200
 
 if __name__ == '__main__':

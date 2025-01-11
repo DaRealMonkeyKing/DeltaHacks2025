@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import VoiceRecorder from '../VoiceRecorder'
 
 export default function study() {
   return (
@@ -9,9 +10,9 @@ export default function study() {
           {/* Replace with your logo */}
           <Link to="/">
             <img 
-              src="src\assets\react.svg" 
+              src="src\assets\logo.png" 
               alt="Logo" 
-              className="h-full w-auto" 
+              className="h-full w-auto"
             />
           </Link>
         </div>
@@ -19,11 +20,13 @@ export default function study() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <p>study page with ai</p>
+          <VoiceRecorder/>
+          
           <Link 
             to="/results" 
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          
           >
-            results
+            <button className="bg-primary text-background rounded-md px-10 py-2">Results</button>
           </Link>
         </div>
       </div>

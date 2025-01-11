@@ -11,15 +11,17 @@ import './App.css'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/study" element={<Study />} />
-        <Route path="/results" element={<Results />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="max-w-screen">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/study" element={<Study />} />
+          <Route path="/results" element={<Results />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 

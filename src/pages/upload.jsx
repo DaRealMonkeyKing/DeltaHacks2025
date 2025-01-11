@@ -9,9 +9,9 @@ export default function upload() {
           {/* Replace with your logo */}
           <Link to="/">
             <img 
-              src="src\assets\react.svg" 
+              src="src\assets\logo.png" 
               alt="Logo" 
-              className="h-full w-auto" 
+              className="h-full w-auto"
             />
           </Link>
         </div>
@@ -21,9 +21,8 @@ export default function upload() {
           <p>Upload/choose a study set page</p>
           <Link 
             to="/study" 
-            className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors inline-block mt-4"
           >
-            study
+            <button className="bg-primary text-background rounded-md px-10 py-2">Study</button>
           </Link>
         </div>
       </div>

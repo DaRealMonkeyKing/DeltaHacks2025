@@ -60,11 +60,11 @@ export default function Login() {
               class="w-full justify-center py-1 bg-primary hover:bg-accent active:bg-accent rounded-md text-white ring-2"
               type="submit"
             >
-              login
+              Log in
             </button>
             </Link>
             <p class="flex justify-center space-x-1">
-              <span class="text-gray-800"> Have an account? </span>
+              <span class="text-gray-800"> First time here? </span>
               <a class="text-primary hover:underline" href="#">Sign Up</a>
             </p>
           </form>

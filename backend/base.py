@@ -2,9 +2,13 @@ from flask import Flask, request, jsonify, send_file
 import os
 from openai import OpenAI
 from flask_cors import CORS
+from pymongo import MongoClient
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+client = MongoClient('mongodb://localhost:27017/')  # or your MongoDB URI
+db = client['your_database_name']  # replace with your database name
+collection = db['your_collection_name']  # replace wi
 CORS(app, resources={
     r"/*": {
         "origins": ["http://localhost:5174", "http://127.0.0.1:5174"],
@@ -46,6 +50,13 @@ def transcribe_audio():
         model="whisper-1", 
         file=audio_file
     )
+    transcription_doc = {
+            "transcription": transcription.text,
+            "timestamp": datetime.datetime.now(),  # Add timestamp
+            "status": "completed"
+        }
+    result = collection.insert_one(transcription_doc)
+    print(f"Saved to MongoDB with ID: {result.inserted_id}")
     print(transcription.text)
     return jsonify({"transcription": transcription.text}), 200
 

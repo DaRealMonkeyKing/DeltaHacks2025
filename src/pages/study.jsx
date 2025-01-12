@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import VoiceRecorder from '../VoiceRecorder'
-import VoiceRecorder from '../VoiceRecorder'
 
 export default function study() {
   return (
@@ -32,9 +31,7 @@ export default function study() {
           </div>
           <p>study page with ai</p>
           <Link 
-            to="/results" 
-          
-          >
+            to="/results" >
             <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Results</button>
           </Link>
         </div>

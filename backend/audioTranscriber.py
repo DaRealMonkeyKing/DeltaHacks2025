@@ -44,31 +44,14 @@ def name_cluster(sentences):
     return completion.choices[0].message.content
 
 
-def compare_text_to_audio(sentences):
-    #spokenSentence = interpret_mp3("AudioTests/audioTest.mp3")
-    story = """
-Jack’s mother could bring paper to life. As a child, Jack was fascinated by the paper animals she folded—tigers that prowled, cranes that flapped their wings, and whales that swam through the air. His favorite was a small paper tiger named Laohu, who purred against his cheek when he was sad and wrestled with his action figures when he was happy. The magic his mother wove into these creations felt as natural as breathing. 
+def compare_text_to_audio(sentences, filepath):
+    spokenSentence = interpret_mp3(filepath)
 
-But as Jack grew older, things changed. He began to notice the differences between himself and the other kids in their suburban American neighborhood. His classmates teased him about his mother’s broken English and their Chinese food at home. They didn’t understand the strange magic of the paper animals; they called it weird. Wanting desperately to fit in, Jack pushed away the parts of himself that felt foreign—his mother, her traditions, and the magical animals she made.
-
-By the time Jack was in high school, he no longer spoke Chinese, and the paper animals lay forgotten in a box. He didn’t even try to defend his mother when his classmates mocked her. It was easier that way.
-
-Years later, after Jack’s mother passed away, he stumbled upon the old box of paper animals while sorting through her belongings. They were worn and faded, reminders of a childhood he had long buried. Laohu, the little paper tiger, seemed especially fragile. When Jack picked him up, the tiger stirred weakly, and Jack noticed faint writing on the inside of the paper.
-
-Carefully unfolding Laohu, Jack found a letter his mother had written in Chinese. She poured out her heart, recounting her life in China, her painful journey to America, and the sacrifices she made to raise him in a better world. She explained how much she had loved him, even when he turned away from her, and how proud she was of him despite the distance between them.
-
-Reading the letter, Jack felt the weight of her love and the regret of all the moments he had dismissed her, moments he could never get back. Tears streamed down his face as he realized what he had lost—her language, her culture, and her magic—now gone forever.
-
-Holding the faded paper tiger close, Jack finally understood that the magic was never just in the animals. It was in the love his mother had poured into every fold, every crease. And it had always been with him, waiting for him to see it.
-"""
-    story = "My name is WILLLIAM LIU. AND I AM CHINESE. I POURED OUT MY HEART TO MY SON JACK."
     # story = extract_keywords(story)
-    vector = vectorize_sentences([story])[0]
+    vector = vectorize_sentences([spokenSentence])[0]
 
     # sentence_vectors = vectorize_sentences([extract_keywords(sentence) for sentence in sentences])
     sentence_vectors = vectorize_sentences(sentences)
-    similarities = []
-
 
     average_similarity = 0
     for sentence_vector in sentence_vectors:

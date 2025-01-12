@@ -77,6 +77,8 @@ const VoiceRecorder = ({onTranscriptionChange}) => {
     const fetchTranscription = async () => {
         try {
             console.log("Starting transcription fetch...");
+            const pdfFileName = localStorage.getItem('pdfFileName');
+            
             const response = await fetch("http://127.0.0.1:5000/transcribe", {
                 method: 'GET',
                 headers: {
@@ -86,22 +88,19 @@ const VoiceRecorder = ({onTranscriptionChange}) => {
                 },
             });
 
-            console.log("Response received:", response);
-            const text = await response.text();  // Try getting raw text first
-            console.log("Raw response:", text);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-            try {
-                const data = JSON.parse(text);
-                if (data && data.transcription) {
-                    setTranscription(data.transcription);
-                    console.log("Transcription received:", data.transcription);
-                    handleTranscriptionResult(data.transcription);
-                } else {
-                    console.error("No transcription in response:", data);
-                }
-            } catch (parseError) {
-                console.error("Error parsing JSON:", parseError);
-                console.log("Raw response was:", text);
+            const data = await response.json();
+            console.log("Transcription data:", data);
+
+            if (data.transcription) {
+                setTranscription(data.transcription);
+                onTranscriptionChange(data.transcription);
+                localStorage.setItem('transcription', data.transcription);
+            } else {
+                console.error("No transcription in response");
             }
 
         } catch (err) {

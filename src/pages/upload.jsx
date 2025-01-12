@@ -34,6 +34,10 @@ export default function upload() {
           </div>
           <h2 className="text-3xl text-gray-800 font-semibold p-4">Or upload your own material!</h2>
           <FileUpload />
+          <Link 
+              to="/study" className="w-full py-4 text-2xl bg-primary text-background rounded-md hover:bg-accent transition-colors">
+              <button className="p-4">Study</button>
+            </Link>
         </div>
       </div>
     </div>

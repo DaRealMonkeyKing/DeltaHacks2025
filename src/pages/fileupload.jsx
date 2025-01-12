@@ -9,6 +9,7 @@ export default function FileUpload() {
     const selectedFile = e.target.files[0]
     if (selectedFile && selectedFile.type === 'application/pdf') {
       setFile(selectedFile)
+      localStorage.setItem('pdfFileName', selectedFile.name)
       
       const formData = new FormData()
       formData.append('file', selectedFile)

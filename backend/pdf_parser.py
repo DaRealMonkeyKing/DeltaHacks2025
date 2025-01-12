@@ -1,29 +1,22 @@
 import re
+import numpy as np
 from pypdf import PdfReader
 from sklearn.cluster import KMeans
 from nltk import tokenize
-from sentence_transformers import SentenceTransformer
 
 
 
-
-
-
-
-
-def vectorize_sentences(sentences):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    # Generate sentence embeddings
-    sentence_vectors = model.encode(sentences)
-    return sentence_vectors
-
-
+#def vectorize_sentences(sentences):
+ #   model = SentenceTransformer('')
+#    # Generate sentence embeddings
+ #   sentence_vectors = model.encode(sentences)
+ #   return sentence_vectors
 
 
 def kmeans_clustering(sentences, sentence_vectors):
     # Set the number of clusters (k) based on your dataset
-    num_clusters = min(max(len(sentences) // 5, 1), 20)
-
+    # num_clusters = min(max(len(sentences) // 5, 1), 20)
+    num_clusters = 20
 
     # Fit K-Means
     kmeans = KMeans(n_clusters=num_clusters, random_state=42)

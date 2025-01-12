@@ -3,17 +3,27 @@ import os
 from openai import OpenAI
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
+from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {
-        "origins": ["http://localhost:5174", "http://127.0.0.1:5174"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-        "supports_credentials": False
-    }
-})
+CORS(app)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabase.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False # dont track modifications to database
+
+db = SQLAlchemy(app) # create database instance
+
+class Transcription(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    transcription = db.Column(db.String(10000), unique=False, nullable=False)
+    
+    def to_json(self):
+        return {
+            "id": self.id,
+            "transcription": self.transcription
+        }
 
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():
@@ -46,8 +56,11 @@ def transcribe_audio():
         model="whisper-1", 
         file=audio_file
     )
-    print(transcription.text)
+    
+    
+    
     return jsonify({"transcription": transcription.text}), 200
+
 
 
 # Configure upload folder

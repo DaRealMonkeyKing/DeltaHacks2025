@@ -70,7 +70,8 @@ const VoiceRecorder = ({onTranscriptionChange}) => {
 
     const handleTranscriptionResult = (result) => {
         setTranscription(result);
-        onTranscriptionChange(result);
+        onTranscriptionChange(result)
+        localStorage.setItem('transcription', result);
     };
 
     const fetchTranscription = async () => {
@@ -78,12 +79,10 @@ const VoiceRecorder = ({onTranscriptionChange}) => {
             console.log("Starting transcription fetch...");
             const response = await fetch("http://127.0.0.1:5000/transcribe", {
                 method: 'GET',
-                mode: 'cors',
-                credentials: 'omit',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    "Access-Control-Allow-Origin": "*",
+                    'Access-Control-Allow-Origin': '*',
                 },
             });
 

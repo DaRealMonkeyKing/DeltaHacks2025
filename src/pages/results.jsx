@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactLoading from 'react-loading';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -71,7 +72,10 @@ export default function Results() {
             <img src="src/assets/pizza.png" alt="Mascot" className="w-2/3" />
           </div>
           {loading ? (
-            <p>Analyzing your response...</p>
+            <div className="flex flex-col items-center justify-center pb-20">
+              <ReactLoading type="spin" color="#3298d8" height={100} width={100} />
+              <p className="text-xl text-gray-800 font-semibold p-2">Analyzing your response...</p>
+            </div>
           ) : results ? (
             <>
               <h2 className="text-3xl text-gray-800 font-semibold p-2">

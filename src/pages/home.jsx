@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 export default function Home() {
   return (
     <div>
-      <Hero />
+      <div className="bg-primary">
+        <Hero />
+      </div>
       <Info />
     </div>
   )

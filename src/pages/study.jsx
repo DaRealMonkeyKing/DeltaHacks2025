@@ -23,17 +23,14 @@ export default function study() {
           <h2 className="text-2xl text-gray-800 font-semibold p-1">When you're done, hit Results.</h2>
           <h2 className="text-2xl text-gray-800 font-semibold p-1">StegoStudy will listen to your recording and tell you what you missed.</h2>
           <div className="flex justify-center items-center gap-4 p-4">
-            <button className="w-1/3 py-4 bg-red-400 text-2xl text-background rounded-md hover:bg-red-500 transition-colors"><VoiceRecorder /></button> <br />
+            <div className="w-1/3 py-4 bg-red-400 text-2xl text-background rounded-md hover:bg-red-500 transition-colors">
+              <VoiceRecorder />
+            </div>
             <Link 
               to="/results" className="w-1/3 py-4 text-2xl bg-primary text-background rounded-md hover:bg-accent transition-colors">
               <button className="">Results</button>
             </Link>
           </div>
-          <p>study page with ai</p>
-          <Link 
-            to="/results" >
-            <button className="px-6 py-2 bg-primary text-background rounded-md hover:bg-accent transition-colors">Results</button>
-          </Link>
         </div>
       </div>
     </div>

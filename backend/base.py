@@ -10,7 +10,7 @@ CORS(app, resources={
         "origins": ["http://localhost:5174", "http://127.0.0.1:5174"],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-        "supports_credentials": True
+        "supports_credentials": False
     }
 })
 

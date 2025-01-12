@@ -76,19 +76,6 @@ export default function FileUpload() {
           </div>
         </div>
       </div>
-
-      <div className="flex gap-4">
-        <button className="bg-red-400 text-black rounded-md px-10 py-2">Record</button>
-      </div>
-
-      <div className="w-full max-w-2xl mt-4">
-        <textarea
-          value={transcript}
-          readOnly
-          className="w-full h-32 p-4 border-2 border-primary rounded-lg resize-none focus:outline-none"
-          placeholder="Transcript will appear here..."
-        />
-      </div>
     </div>
   )
 }

@@ -79,8 +79,7 @@ const VoiceRecorder = () => {
 
     return (
         <div>
-            <button
-                className="bg-red-400 text-black rounded-md px-10 py-2"
+            <button 
                 onClick={recording ? stopRecording : startRecording}
             >
                 {recording ? "Stop Recording" : "Start Recording"}

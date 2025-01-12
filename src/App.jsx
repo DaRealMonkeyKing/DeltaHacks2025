@@ -6,7 +6,7 @@ import Upload from './pages/upload'
 import Study from './pages/study'
 import Results from './pages/results'
 import CustomizeUpload from './pages/customizeup'
-import './App.css'
+import Info from './pages/info'
 
 function App() {
   return (

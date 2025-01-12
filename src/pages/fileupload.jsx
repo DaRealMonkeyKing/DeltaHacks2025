@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 export default function FileUpload() {
   const [file, setFile] = useState(null)
   const [message, setMessage] = useState('')
+  const [transcript, setTranscript] = useState('')
 
   const handleFileChange = async (e) => {
     const selectedFile = e.target.files[0]
@@ -36,7 +37,7 @@ export default function FileUpload() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4 p-4">
       <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
         <div className="md:flex">
           <div className="w-full p-3">
@@ -74,6 +75,19 @@ export default function FileUpload() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="flex gap-4">
+        <button className="bg-red-400 text-black rounded-md px-10 py-2">Record</button>
+      </div>
+
+      <div className="w-full max-w-2xl mt-4">
+        <textarea
+          value={transcript}
+          readOnly
+          className="w-full h-32 p-4 border-2 border-primary rounded-lg resize-none focus:outline-none"
+          placeholder="Transcript will appear here..."
+        />
       </div>
     </div>
   )

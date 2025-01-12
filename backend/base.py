@@ -5,7 +5,15 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/*": {
+        "origins": ["http://localhost:5174", "http://127.0.0.1:5174"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
+        "supports_credentials": True
+    }
+})
+
 
 @app.route('/upload_audio', methods=['POST'])
 def upload_audio():

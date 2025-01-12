@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const VoiceRecorder = () => {
+const VoiceRecorder = ({onTranscriptionChange}) => {
     const [recording, setRecording] = useState(false);
     const [audioUrl, setAudioUrl] = useState(null);
     const [audioFile, setAudioFile] = useState(null);
@@ -37,7 +37,10 @@ const VoiceRecorder = () => {
                         "http://127.0.0.1:5000/upload_audio",
                         formData,
                         {
-                            headers: { "Content-Type": "multipart/form-data" },
+                            headers: { "Content-Type": "multipart/form-data",
+                                "Access-Control-Allow-Origin": "*"
+                             },
+                             withCredentials: false,
                         }
                     );
                     console.log("WAV file received:", response.data);
@@ -64,16 +67,45 @@ const VoiceRecorder = () => {
         fetchTranscription()
     };
 
+    const handleTranscriptionResult = (result) => {
+        setTranscription(result);
+        onTranscriptionChange(result);
+    };
+
     const fetchTranscription = async () => {
         try {
-            const response = await axios.get(
-                "http://127.0.0.1:5000/transcribe"
-            );
+            console.log("Starting transcription fetch...");
+            const response = await fetch("http://127.0.0.1:5000/transcribe", {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            });
 
-            setTranscription(response.data.transcription);
-            console.log(response.data.transcription);
+            console.log("Response received:", response);
+            const text = await response.text();  // Try getting raw text first
+            console.log("Raw response:", text);
+
+            try {
+                const data = JSON.parse(text);
+                if (data && data.transcription) {
+                    setTranscription(data.transcription);
+                    console.log("Transcription received:", data.transcription);
+                    handleTranscriptionResult(data.transcription);
+                } else {
+                    console.error("No transcription in response:", data);
+                }
+            } catch (parseError) {
+                console.error("Error parsing JSON:", parseError);
+                console.log("Raw response was:", text);
+            }
+
         } catch (err) {
-            console.error(err);
+            console.error("Error fetching transcription:", err);
+            setTranscription("Error getting transcription");
         }
     };
 
@@ -85,7 +117,6 @@ const VoiceRecorder = () => {
                 {recording ? "Stop Recording" : "Start Recording"}
             </button>
             {/* {audioUrl && <audio controls src={audioUrl} />} */}
-            {transcription && <p>Transcription: {transcription}</p>}
         </div>
     );
 };

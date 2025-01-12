@@ -24,7 +24,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabase.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-OPENAI_API_KEY = "key"
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 class Transcription(db.Model):
     id = db.Column(db.Integer, primary_key=True)

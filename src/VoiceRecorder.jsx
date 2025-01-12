@@ -8,6 +8,7 @@ const VoiceRecorder = ({onTranscriptionChange}) => {
     const [mediaRecorder, setMediaRecorder] = useState(null);
     const [transcription, setTranscription] = useState("");
 
+    // COmment
     // Start recording
     const startRecording = async () => {
         try {

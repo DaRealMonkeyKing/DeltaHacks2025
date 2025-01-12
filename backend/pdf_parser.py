@@ -42,7 +42,7 @@ def kmeans_clustering(sentences, sentence_vectors):
     return clusters
 
 
-def extract_text_from_pdf(pdf_path):
+def parse_text_from_pdf(pdf_path):
     reader = PdfReader(pdf_path)
     number_of_pages = len(reader.pages)
 
@@ -74,7 +74,7 @@ def extract_text_from_pdf(pdf_path):
     # Cluster sentences
     clusters = kmeans_clustering(sentences, sentence_vectors)
 
-    return '\n'.join(sentences)
+    return clusters
 
 
 def check_delete_cluster(clusters, cluster_number):
@@ -105,4 +105,5 @@ def rank_sentences(sentences, sentence_vectors):
 
 # text = extract_text_from_pdf("fileuploads/Antipode - 2010 - Alkon - Whiteness and Farmers Markets  Performances  Perpetuations     Contestations.pdf")
 # text = extract_text_from_pdf("fileuploads/a08.pdf")
-text = extract_text_from_pdf("fileuploads/LectureNotes.pdf")
+# text = extract_text_from_pdf("fileuploads/LectureNotes.pdf")
+points = parse_text_from_pdf("fileuploads/Is Elon Musk The Greatest Leader On Earth_.pdf")

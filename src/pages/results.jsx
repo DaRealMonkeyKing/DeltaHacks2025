@@ -77,7 +77,7 @@ export default function Results() {
               <h2 className="text-3xl text-gray-800 font-semibold p-2">
                 StegoStudy heard {Math.round(results.coverage_percentage)}% of key information in the study set.
               </h2>
-              <h2 className="text-3xl text-gray-800 font-semibold p-2">Here's what you missed:</h2>
+              {/*<h2 className="text-3xl text-gray-800 font-semibold p-2">Here's what you missed:</h2>
               <div className="p-4">
                 {Object.entries(results.cluster_results).map(([id, cluster]) => (
                   !cluster.covered && (
@@ -86,7 +86,7 @@ export default function Results() {
                     </div>
                   )
                 ))}
-              </div>
+              </div>*/}
             </>
           ) : (
             <p>Error analyzing response</p>

@@ -24,7 +24,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabase.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-OPENAI_API_KEY = ""
+OPENAI_API_KEY = "key"
 
 class Transcription(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -70,7 +70,7 @@ def parse_text_from_pdf(pdf_path):
     text = ' '.join(pages)
     
     sentences = tokenize.sent_tokenize(text)
-    sentences = rank_sentences(sentences, vectorize_sentences(sentences))[:len(sentences)//4]
+    sentences = rank_sentences(sentences, vectorize_sentences(sentences))[:len(sentences)//1]
     sentence_vectors = vectorize_sentences(sentences)
     clusters = kmeans_clustering(sentences, sentence_vectors)
     return clusters
@@ -245,7 +245,8 @@ def receive_string():
         if not os.path.exists(pdf_path):
             return jsonify({"error": f"PDF not found: {pdf_path}"}), 404
 
-        results = {}
+        results = 0
+        resultscount = 0
         coverage_count = 0
         total_clusters = 0
         
@@ -254,19 +255,19 @@ def receive_string():
         converted_clusters = {int(k): v for k, v in clusters.items()}
         
         for cluster_id, sentences in converted_clusters.items():
-            result = compare_text_to_audio(sentences, transcription)
-            results[str(cluster_id)] = {
-                "covered": result,
-                "sentences": sentences
-            }
-            if result:
-                coverage_count += 1
-            total_clusters += 1
+            results += compare_text_to_audio(sentences, transcription)
+            resultscount += 1
+            #results[str(cluster_id)] = {
+           #     "covered": bool(result),
+           #     "sentences": sentences
+           # }
+            #if result:
+            #    coverage_count += 1
+            #total_clusters += 1
 
         # Calculate coverage
-        coverage_percentage = 100*results.get(str(cluster_id), {}).get("covered", False)
-        #(coverage_count / total_clusters * 100) if total_clusters > 0 else 0
-        
+        coverage_percentage = (results / resultscount) * 100
+
         response_data = {
             "coverage_percentage": float(coverage_percentage),
             "cluster_results": results

@@ -85,7 +85,7 @@ const VoiceRecorder = () => {
             >
                 {recording ? "Stop Recording" : "Start Recording"}
             </button>
-            {audioUrl && <audio controls src={audioUrl} />}
+            {/* {audioUrl && <audio controls src={audioUrl} />} */}
             {transcription && <p>Transcription: {transcription}</p>}
         </div>
     );

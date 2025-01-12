@@ -32,7 +32,7 @@ def serve_audio():
 
 @app.route('/transcribe', methods=['GET'])
 def transcribe_audio():
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key="API_KEY")
 
     audio_file= open("uploaded_audio.wav", "rb")
     transcription = client.audio.transcriptions.create(

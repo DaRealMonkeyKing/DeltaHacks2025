@@ -2,8 +2,8 @@
 Our attempt at 2025 DeltaHacks
 
 ## Team Members
--
--
--
--
+- Niel
+- Ryan
+- Justus
+- Samuel
 

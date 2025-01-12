@@ -1,0 +1,2 @@
+MONGODB_URL=mongodb+srv://samuelzhangsz886:ykIAcdNoUCiHEYJW@cluster0.utzzi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+PORT=3001

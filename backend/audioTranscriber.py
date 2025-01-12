@@ -3,8 +3,11 @@ import os
 from rake_nltk import Rake
 import nltk
 
-#nltk.download('punkt_tab')
-#nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('stopwords')
+
+print(os.getenv("OPENAI_KEY1"))
+print(os.getenv("OPENAI_KEY2"))
 
 def interpret_mp3(file):
     client = OpenAI(api_key=os.getenv("OPENAI_KEY1"))

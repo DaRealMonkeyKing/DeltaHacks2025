@@ -1,9 +1,12 @@
 import re
 from pypdf import PdfReader
 from sklearn.cluster import KMeans
-from blingfire import text_to_sentences
+from nltk import tokenize
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity as cs
+
+
+# segmenter = Segmenter(language='en', clean=False)
 
 
 def vectorize_sentences(sentences):
@@ -52,7 +55,7 @@ def parse_text_from_pdf(pdf_path):
         page = reader.pages[i]
         pages.append(page.extract_text())
     text = ' '.join(pages)
-    sentences = text_to_sentences(text).split('\n')
+    sentences = tokenize.sent_tokenize(text)
 
     # example test sentences
     # sentences = ["The quick brown fox jumps over the lazy dog.",
@@ -80,15 +83,18 @@ def parse_text_from_pdf(pdf_path):
 def check_delete_cluster(clusters, cluster_number):
     # if a cluster is almost perfectly similar to itself and has a lot of sentences, it is likely to be a duplicate
     # and delete
-    cluster_sentences = clusters[cluster_number]
-    if len(cluster_sentences) > 1:
-        vectors = vectorize_sentences(cluster_sentences)
-        similarity_matrix = cs(vectors)
-        avg_similarity = similarity_matrix.mean()
+    # cluster_sentences = clusters[cluster_number]
+    # if len(cluster_sentences) > 1:
+    #     vectors = vectorize_sentences(cluster_sentences)
+    #     similarity_matrix = cs(vectors)
+    #     avg_similarity = similarity_matrix.mean()
 
-        print(cluster_sentences, avg_similarity)
-        if avg_similarity > 0.8:  # Threshold for similarity
-            del clusters[cluster_number]
+    #     print(cluster_sentences, avg_similarity)
+    #     if avg_similarity > 0.8:  # Threshold for similarity
+    #         del clusters[cluster_number]
+    cluster_sentences = clusters[cluster_number]
+    if len(cluster_sentences) <= 2:
+        del clusters[cluster_number]
 
 
 def rank_sentences(sentences, sentence_vectors):
@@ -97,7 +103,7 @@ def rank_sentences(sentences, sentence_vectors):
     similarities = sentence_vectors @ mean_vector
 
     # Rank sentences by similarity score
-    ranked_sentences = [sentence for _, sentence in sorted(zip(similarities, sentences), reverse=True)]
+    ranked_sentences = [sentence.replace('\n', '') for _, sentence in sorted(zip(similarities, sentences), reverse=True)]
     return ranked_sentences
 
 
@@ -105,5 +111,5 @@ def rank_sentences(sentences, sentence_vectors):
 
 # text = extract_text_from_pdf("fileuploads/Antipode - 2010 - Alkon - Whiteness and Farmers Markets  Performances  Perpetuations     Contestations.pdf")
 # text = extract_text_from_pdf("fileuploads/a08.pdf")
-# text = extract_text_from_pdf("fileuploads/LectureNotes.pdf")
-points = parse_text_from_pdf("fileuploads/Is Elon Musk The Greatest Leader On Earth_.pdf")
+text = parse_text_from_pdf("fileuploads/The-Paper-Menagerie+by+Ken+Liu.pdf")
+# points = parse_text_from_pdf("fileuploads/Is Elon Musk The Greatest Leader On Earth_.pdf")

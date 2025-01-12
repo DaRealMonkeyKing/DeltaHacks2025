@@ -55,5 +55,5 @@ def extract_text_from_pdf(pdf_path):
     return '\n'.join(sentences)
 
 
-text = extract_text_from_pdf("Antipode - 2010 - Alkon - Whiteness and Farmers Markets  Performances  Perpetuations     Contestations.pdf")
-# text = extract_text_from_pdf("LectureNotes.pdf")
+text = extract_text_from_pdf("fileuploads/Antipode - 2010 - Alkon - Whiteness and Farmers Markets  Performances  Perpetuations     Contestations.pdf")
+text = extract_text_from_pdf("fileuploads/a08.pdf")

@@ -13,7 +13,7 @@ export default function FileUpload() {
       formData.append('file', selectedFile)
 
       try {
-        const response = await fetch('http://127.0.0.1:5000/upload', {
+        const response = await fetch('http://127.0.0.1:5000/upload_pdf', {
           method: 'POST',
           body: formData,
         })

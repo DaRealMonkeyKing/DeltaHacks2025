@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import VoiceRecorder from '../VoiceRecorder'
-import VoiceRecorder from '../VoiceRecorder'
 
 export default function study() {
   return (
